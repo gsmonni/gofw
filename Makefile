@@ -4,15 +4,14 @@ help: # Show help for each of the Makefile recipes.
 
 BINARY_NAME=gofw
 BINARY_FOLDER=release
+VERSION=$(shell cat VERSION)
 
-build: # build  gofw
+build: clean # build  gofw
 	$(shell mkdir ${BINARY_FOLDER})
-	GOARCH=amd64 GOOS=darwin go build -o ${BINARY_FOLDER}/${BINARY_NAME}-darwin ./cmd/main.go
-	GOARCH=amd64 GOOS=linux go build -o  ${BINARY_FOLDER}/${BINARY_NAME}-linux ./cmd/main.go
-	GOARCH=amd64 GOOS=windows go build -o  ${BINARY_FOLDER}/${BINARY_NAME}-windows ./cmd/main.go
+	go build -o ${BINARY_FOLDER}/${BINARY_NAME} ./cmd/main.go
 
 run: build # build and run  gofw
-	./${BINARY_FOLDER}/${BINARY_NAME}-darwin
+	./${BINARY_FOLDER}/${BINARY_NAME}
 
 clean: # clean-up binary files
 	go clean
@@ -23,5 +22,9 @@ test: # run tests
 
 vendor: # pull vendor diectories
 	go mod vendor
+
+publish:
+	#git tag ${VERSION} main
+	git push origin ${VERSION}
 
 first-time: clean vendor test run # run this command to pull all dependencies (this should be run only once)
