@@ -9,6 +9,7 @@ import (
 	"os"
 )
 
+// ReadJson reads the json file specified by dn and if useschema is set to true verifiies that the file is consistent with the schema specified by the parameter sn
 func ReadJson(dn string, sn string, data interface{}, useschema bool) error {
 	var r *gojsonschema.Result
 	var err error
