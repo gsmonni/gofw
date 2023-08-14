@@ -1,0 +1,6 @@
+# action.yml
+name: 'gofw-test'
+description: Test GoFW
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
