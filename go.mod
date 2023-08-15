@@ -3,6 +3,7 @@ module github.com/gsmonni/gofw
 go 1.21
 
 require (
+	github.com/agiledragon/gomonkey/v2 v2.10.1
 	github.com/stretchr/testify v1.8.4
 	github.com/xeipuuv/gojsonschema v1.2.0
 )
