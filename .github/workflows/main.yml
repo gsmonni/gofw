@@ -19,6 +19,9 @@ jobs:
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Run Static Analysis
+        run: |
+          ./codecov static-analysis --token=${{ secrets.STATIC_TOKEN }}
       - name: Run Integration test
         id: gofw-test
         uses: ./
