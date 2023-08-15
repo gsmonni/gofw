@@ -26,7 +26,7 @@ clean: # clean-up binary files
 	rm -rf ${BINARY_FOLDER}
 
 test: # run tests
-	go test ./... -gcflags=all=-l -p=1
+	go test -gcflags=all=-l -p=1 ./...
 
 vendor: # pull vendor diectories
 	go mod vendor
