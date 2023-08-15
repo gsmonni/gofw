@@ -23,12 +23,19 @@ run-linux: build-linux # build and run  gofw
 
 clean: # clean-up binary files
 	go clean
+	rm -rf coverage.out
 	rm -rf ${BINARY_FOLDER}
 
 test: # run tests
 	go test -gcflags=all=-l -p=1 ./...
 
-vendor: # pull vendor diectories
+coverage: $(shell find . -type f -print | grep -v vendor | grep "\.go")
+	@go test -cover -coverprofile ./coverage.out ./...
+
+cover: coverage # compute code coverage
+	@go tool cover -html=./coverage.out
+
+vendor: # pull vendor directories
 	go mod vendor
 
 publish:
